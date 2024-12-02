@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with {{ receiver }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Chat with {{ receiver }}</h1>
+    <div class="chat-box">
+        {% for chat in chats %}
+            <p><strong>{{ chat.sender }}</strong>: {{ chat.message }} <em>{{ chat.timestamp }}</em></p>
+        {% endfor %}
+    </div>
+    <form method="POST">
+        <textarea name="message" placeholder="Type your message here..." required></textarea>
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>

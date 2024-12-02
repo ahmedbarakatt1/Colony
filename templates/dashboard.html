@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    {% if user %}
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Logo" class="logo-img">
+            </div>
+            <h2>COLONY</h2>
+            <nav>
+                <a href="{{ url_for('profile') }}">Profile</a> 
+                <a href="{{ url_for('chat') }}">Chat</a> 
+                <a href="#create_project">Create Project</a>
+                <a href="#create_task">Create Task</a>
+                <a href="#update_task">Update Task Status</a>
+                <a href="#file_upload">File Upload</a>
+                <a href="{{ url_for('change_password') }}">Change Password</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </div>
+        <div class="main-content">
+           
+            <div class="welcome">
+                <h1>Welcome, {{ user['username'] }}!</h1>
+            </div>
+       
+            <section id="create_project">
+                <h1>Create Project</h1>
+                <form method="POST" action="{{ url_for('project.create_project') }}">
+                    <input type="text" name="project_name" placeholder="Project Name" required>
+                    <textarea name="project_description" placeholder="Project Description" required></textarea>
+                    <button type="submit">Create Project</button>
+                </form>
+            </section>
+            
+        
+            <section id="create_task">
+                <h1>Create Task</h1>
+                <form method="POST" action="{{ url_for('project.create_task') }}">
+                    <select name="project" required>
+                        <option value="" disabled selected>Select Project</option>
+                        {% for project in projects %}
+                        <option value="{{ project.pid }}">{{ project.pname }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="text" name="title" placeholder="Task Title" required>
+                    <input type="text" name="assignee" placeholder="Assignee" required>
+                    <label for="due_date">Due Date</label>
+                    <input type="date" name="due_date" required>
+                    <button type="submit">Create Task</button>
+                </form>
+            </section>
+            
+
+
+            <section id="update_task">
+                <h1>Update Task Status</h1>
+                {% for project in projects %}
+                <h2>{{ project.pname }}</h2>
+                {% for task in project.tasks %}
+                <form method="POST" action="{{ url_for('project.update_task_status') }}">
+                    <p><strong>Task Name:</strong> {{ task.title }}</p>
+                    <p>Assigned to: {{ task.assignee }}</p>
+                    <input type="hidden" name="project_id" value="{{ project.pid }}">
+                    <input type="hidden" name="task_id" value="{{ task.id }}">
+                    <label for="status-{{ task.id }}">Status:</label>
+                    <select id="status-{{ task.id }}" name="status">
+                        <option value="Not Started" {% if task.status == 'Not Started' %}selected{% endif %}>Not Started</option>
+                        <option value="In Progress" {% if task.status == 'In Progress' %}selected{% endif %}>In Progress</option>
+                        <option value="Completed" {% if task.status == 'Completed' %}selected{% endif %}>Completed</option>
+                    </select>
+                    <button type="submit">Update</button>
+                </form>
+                {% endfor %}
+                {% endfor %}
+            </section>
+            
+
+      
+            <section id="file_upload">
+                <h1>File Upload</h1>
+                <form method="POST" action="{{ url_for('project.upload_file') }}" enctype="multipart/form-data">
+                    <input type="file" name="file" required>
+                    <button type="submit">Upload</button>
+                </form>
+                <ul>
+                    {% for file in files %}
+                    <li>{{ file }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+        </div>
+    </div>
+    {% else %}
+    <div class="login-prompt">
+        <h1>Please <a href="{{ url_for('login') }}">Login</a> or <a href="{{ url_for('register') }}">Register</a> to access the dashboard.</h1>
+    </div>
+    {% endif %}
+</body>
+</html>
