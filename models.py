@@ -45,13 +45,18 @@ class Project(db.Model):
 
 class Task(db.Model):
     __tablename__ = 'tasks'
+
     task_id = db.Column(db.Integer, primary_key=True)
     project_id = db.Column(db.Integer, db.ForeignKey('project_table.pid', ondelete='CASCADE'), nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.uid', ondelete='CASCADE'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.uid', ondelete='SET NULL'), nullable=True)  # Link to User
     task_description = db.Column(db.Text, nullable=False)
     due_date = db.Column(db.Date, nullable=True)
+    priority = db.Column(db.String(20), default='Normal')
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    comments = db.relationship('Comment', backref='task', lazy=True)
+    # Establish relationship with User
+    assignee = db.relationship('User', backref='tasks', lazy=True)
 
 
 class OAuthToken(db.Model):
@@ -66,3 +71,48 @@ class OAuthToken(db.Model):
     expires_at = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     scope = db.Column(db.Text)
+
+class Comment(db.Model):
+    __tablename__ = 'comments'
+
+    comment_id = db.Column(db.Integer, primary_key=True)
+    task_id = db.Column(db.Integer, db.ForeignKey('tasks.task_id', ondelete='CASCADE'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.uid', ondelete='CASCADE'), nullable=False)
+    comment_text = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    user = db.relationship('User', backref='comments', lazy=True)
+
+class ConnectionRequest(db.Model):
+    __tablename__ = 'connection_requests'
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.BigInteger, db.ForeignKey('users.uid'), nullable=False)
+    receiver_id = db.Column(db.BigInteger, db.ForeignKey('users.uid'), nullable=False)
+    status = db.Column(db.String(50), default='pending')
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Add relationships
+    sender = db.relationship('User', foreign_keys=[sender_id], backref='sent_requests')
+    receiver = db.relationship('User', foreign_keys=[receiver_id], backref='received_requests')
+
+class Chat(db.Model):
+    __tablename__ = 'chats'
+    id = db.Column(db.Integer, primary_key=True)
+    sender_id = db.Column(db.BigInteger, db.ForeignKey('users.uid'), nullable=False)
+    receiver_id = db.Column(db.BigInteger, db.ForeignKey('users.uid'), nullable=False)
+    message = db.Column(db.Text, nullable=False)
+    timestamp = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Relationships to the User model
+    sender = db.relationship('User', foreign_keys=[sender_id], backref='sent_chats')
+    receiver = db.relationship('User', foreign_keys=[receiver_id], backref='received_chats')
+
+
+class Post(db.Model):
+    __tablename__ = 'posts'
+
+    post_id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.uid', ondelete='CASCADE'), nullable=False)
+    content = db.Column(db.Text, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    user = db.relationship('User', backref='posts', lazy=True)

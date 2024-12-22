@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Logo" class="logo-img">
+            </div>
+            <h2>COLONY</h2>
+            <nav>
+                <a href="{{ url_for('profile') }}">Profile</a>
+                <a href="{{ url_for('news_feed') }}">News Feed</a>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('faqs') }}">FAQs</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <h1>Frequently Asked Questions</h1>
+
+            <!-- FAQs Section -->
+            <div class="faqs-container">
+                {% for faq in faqs %}
+                <div class="faq-item">
+                    <h3>{{ faq.question }}</h3>
+                    <p>{{ faq.answer }}</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Chatbot Section -->
+            <div class="chatbot-section">
+                <h2>Ask the Chatbot</h2>
+                <div class="chatbot">
+                    <div class="chatbot-messages" id="chatbot-messages"></div>
+                    <div class="chatbot-input-container">
+                        <input type="text" id="chatbot-input" placeholder="Ask me a question...">
+                        <button id="chatbot-send">Send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to external JavaScript -->
+    <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+</body>
+</html>
