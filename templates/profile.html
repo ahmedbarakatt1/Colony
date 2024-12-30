@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Logo" class="logo-img">
+            </div>
+            <h2>COLONY</h2>
+            <nav>
+                <a href="{{ url_for('dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('dashboard') }}#create_project">Create Project</a>
+                <a href="{{ url_for('dashboard') }}#create_task">Create Task</a>
+                <a href="{{ url_for('dashboard') }}#file_upload">Upload File</a>
+                <a href="#" onclick="event.preventDefault();">Profile</a>
+                <a href="{{ url_for('change_password') }}">Change Password</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            </nav>
+        </div>
+        <div class="main-content profile-container">
+            <div class="profile-picture-container">
+                <img src="{{ url_for('static', filename='pic.jpg') }}" alt="Profile Picture" class="profile-picture">
+                <form method="POST" enctype="multipart/form-data">
+                    <input type="file" name="profile_picture" accept="image/*">
+                    <button type="submit" class="button">Update Picture</button>
+                </form>
+            </div>
+            <div class="profile-details">
+                <h1>{{ user.username }}</h1>
+                <p><strong>Email:</strong> {{ user.email }}</p>
+                <form method="POST">
+                    <textarea name="bio" class="profile-bio" placeholder="Write something about yourself...">{{ user.bio }}</textarea>
+                    <button type="submit" class="button">Update Profile</button>
+                </form>
+                <div class="assigned-tasks">
+                    <h2>Assigned Tasks</h2>
+                    <ul>
+                        {% for task in tasks if task.assignee == user.username %}
+                        <li>{{ task.title }} (Status: {{ task.status }})</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

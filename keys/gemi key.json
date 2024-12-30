@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "caramel-pager-445400-t1",
+  "private_key_id": "67e0e5c61fb315714f4630db691c5bdb2c640ab4",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCxJr/5DicgGrFa\n0Tmjj2lb8L5TQnK0Jq3znBjJAiXHw/3Ofhzb2BMbjXnp4mF4tgG2uXIxm51J1RV/\nBg0CElTUNo2oZIaUO/9nLSCyLduQ7S1c8+/7SMOb3WZY9u0EJwa8Y72/50spsEDU\nGh6odWG9/B6WxlVozwNPe7YRC6ZXoOZ5tAXafXaUhWzhsVUSNfiz0RrRE45LXyoJ\nB5EH5sPY3z0DG39uJpMQyz5S2jLkvgcInmSLCACXsiJDY/IMfzqXJQ6LEeuy5YTe\nXwOF7h32xP7w69jr3ZHc9+zR6Fb1Zec7paSxYPkOx8171QyUbXe6JOJq474K+igr\n+Sv0PPUjAgMBAAECggEAEDM3XwxySFDollUhbKZ5JhVDJaE8yBWGPT7kuiaq7QFf\nvOByvZADv1AV+m0SjzoyhR+hJI3S7NhcDOLkXnCHg8vK8vLhpvCnQviXgto6uATy\nHwv+KDNxRlgRO5WCyA+hlNzLxdIRYSov44JrLbb+TaQ4T+V3R6X9HlAPFRcrPdwS\nSKUKV8td8DPS87HKK9wrsb9AC/UmBNePk+XzZ1j9n4s/D9LN2hAIm+1UaHJ8/8tO\ndf8SGeh2fNj2NR+JMSvqqdiZpEIZh8pAjPukfbZ3wzZ/dfWiGsXpNGzn2TfSmnIB\nQxBPE25NKzeWYF2+CyIu0LPuQv70YfLXQaxASxI2wQKBgQDnXKf2a7I8Jo+PakwJ\ntYgal50heT6KZ86UJsqlz6ktLylTQZXRbXHG6vnVgawr3l6lFNGIh/hWJylBsO37\nR694euEEk3bhbbDlKR6Aeh3RuMQJ1diYwrZdBKP75osQHjpyexITFg5VbqdDKf7W\nZlDOsJktDzIt6j7b4c1mq0/ocwKBgQDEBDc+6dNfY08Svn4+53iypZXrgMmaTDNU\nPsdp8UyzzlKvjKWKu/254mqN50A2qm/KmZJjCQRoAR+DjViQABHfA1WkcIR2Hz/r\nlehwVI8nc9kIZLhz5aDk4peFkAT3duXtrPrhzXZ1xSMnnZu1aqNaBx8wIgttipQe\nmMmqAqWEkQKBgBtOdUiBR4UP7Au6OQVAVrMEx/fmbno5bElSFsLhMo9xrIf2Cq+w\nIiifHSOU7XQ0B6mmPmDF44qPjrABKOVqfYxTvHEk0ngi0SkK5F23jANvsjuS8MB+\n4rUx0gTuHeWmG7HdUrHL/Z8Zs0YbE8fMRadPcpS94WdH6WlcSjje6Ux/AoGAToVV\n0CkA2GxCx8JxdidpbT7xsHZVzC6MPUosvd7AmCKlctdHlSy7dhQiFRg22+8oeyNL\nxcpd7n/MrPkZKg4tGoYOb6H3Hg5kn63cf+sPsYExxq/6R8sLycSPaByKMMt7TduG\nYJ/avVCsRXlYX7MJHs5Niw2IQGhL73nLBwSqY1ECgYEAg5S1Nq4NUk+cLl9SF6QD\n//yzQR7vXxLQxEHImppbLUTZyDd6xQJna4a1eoPtFXYZ+4D7VCU21OZhNHwVtrBt\ngDY+Q7uc8lRk+5SjIKamrTvCnyIxOFA9dsiQ0RcA/v2fDzVJ1rQxMli1J2dsP+Yv\nU3CiTZeU1JO8ubEEluy+rGI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "id-gemini-api-service@caramel-pager-445400-t1.iam.gserviceaccount.com",
+  "client_id": "105652615687340550477",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/id-gemini-api-service%40caramel-pager-445400-t1.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
